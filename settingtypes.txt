@@ -1,0 +1,9 @@
+
+# Max pages per chest2 (Bigger numbers means more storage, but may lead to performance issues)
+chest2.max_pages (Max Pages Per Chest2) int 3 1 100
+
+# Enable to allow crafting the chest2:chest (else give or a server shop is needed)
+chest2.craft_chest (Can a Chest2:Chest be crafted) bool false
+
+# Enable to allow crafting the chest2:remote_off (else give or a server shop is needed)
+chest2.craft_remote (Can a Chest2:Remote be crafted) bool false
