@@ -16,7 +16,7 @@ chest2 = {}
 
 chest2.S = minetest.get_translator("chest2")
 chest2.modpath = minetest.get_modpath("chest2")
-chest2.VERSION = "1.0.0"
+chest2.VERSION = "1.0.1"
 
 if minetest.registered_nodes["default:stone"] then
     chest2.GAMEMODE = "MTG"

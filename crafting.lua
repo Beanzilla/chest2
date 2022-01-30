@@ -4,11 +4,11 @@ local gold_block = ""
 local diamond_block = ""
 
 if chest2.GAMEMODE == "MTG" then
-    gold_block = "default:gold_block"
-    diamond_block = "default:diamond_block"
+    gold_block = "default:goldblock"
+    diamond_block = "default:diamondblock"
 elseif chest2.GAMEMODE == "MCL2" or chest2.GAMEMODE == "MCL5" then
-    gold_block = "mcl_core:gold_block"
-    diamond_block = "mcl_core:diamond_block"
+    gold_block = "mcl_core:goldblock"
+    diamond_block = "mcl_core:diamondblock"
 end
 
 if chest2.settings.craft_chest then
