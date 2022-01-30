@@ -11,7 +11,7 @@ elseif chest2.GAMEMODE == "MCL2" or chest2.GAMEMODE == "MCL5" then
     diamond_block = "mcl_core:diamondblock"
 end
 
-if chest2.settings.craft_chest then
+if chest2.settings.craft_chest == true then
     minetest.register_craft({
         output = "chest2:chest 1",
         recipe = {
@@ -22,7 +22,7 @@ if chest2.settings.craft_chest then
     })
 end
 
-if chest2.settings.craft_remote then
+if chest2.settings.craft_remote == true then
     minetest.register_craft({
         output = "chest2:remote_off 1",
         recipe = {

@@ -28,10 +28,11 @@ else
     chest2.GAMEMODE = "???"
 end
 
-dofile(chest2.modpath.."/settings.lua") -- Settings
 dofile(chest2.modpath.."/tool_belt.lua") -- Utility functions
+dofile(chest2.modpath.."/settings.lua") -- Settings
 
 dofile(chest2.modpath.."/register.lua") -- The Chest2
+dofile(chest2.modpath.."/crafting.lua") -- Crafting
 
 chest2.tools.log("Version:  "..chest2.VERSION)
 chest2.tools.log("Gamemode: "..chest2.GAMEMODE)

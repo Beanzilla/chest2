@@ -24,3 +24,9 @@ if settings.craft_remote == nil then
     settings.craft_remote = false
     minetest.settings:set_bool("chest2.craft_remote", false)
 end
+
+--[[
+chest2.tools.log("chest2.max_pages = "..tostring(settings.pages))
+chest2.tools.log("chest2.craft_chest = "..tostring(settings.craft_chest))
+chest2.tools.log("chest2.craft_remote = "..tostring(settings.craft_remote))
+]]
