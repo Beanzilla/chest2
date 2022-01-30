@@ -2,6 +2,8 @@
 
 The Advanced Chest mod
 
+![screenshot](screenshot.png)
+
 ## What's in the box
 
 - A chest (single node, but unlike all other chests, somewhat larger inventory size, but gains paging, so you get multiple inventories in 1 chest)
@@ -18,6 +20,8 @@ While a standard chest is 8x3 the Chest2 is 12x5 not to mention Chest2 supports 
 While there is no way to remotely access a standard chest, Chest2 comes with a Remote, just punch a `chest2:chest` with the remote to connect it to that Chest, then from there punch (left click), use (right click) to access that chest from anywhere in the world (unlimited distance included).
 
 > Note, the remote will reset to a unconnected remote if it looses connection/i.e. someone broke the chest/moved the chest. (When the mod refers to chest it refers to `chest2:chest`)
+
+![usage](usage.png)
 
 ## Settings
 
