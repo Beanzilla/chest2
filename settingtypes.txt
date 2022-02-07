@@ -1,4 +1,7 @@
 
+# Enables extensive debug information into your logs, only use if the mod doesn't work
+chest2.debug_mod (Debug Mod) bool false
+
 # Max pages per chest2 (Bigger numbers means more storage, but may lead to performance issues)
 chest2.max_pages (Max Pages Per Chest2) int 3 1 100
 

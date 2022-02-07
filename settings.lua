@@ -4,6 +4,13 @@ chest2.settings = {}
 
 local settings = chest2.settings
 
+settings.debug_mod = minetest.settings:get_bool("chest2.debug_mod")
+
+if settings.debug_mod == nil then
+    settings.debug_mod = false
+    minetest.settings:set_bool("chest2.debug_mod", settings.debug_mod)
+end
+
 settings.pages = minetest.settings:get("chest2.max_pages")
 
 if settings.pages == nil then

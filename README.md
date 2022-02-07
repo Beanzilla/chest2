@@ -30,3 +30,4 @@ This mod comes with almost full customization from crafting a remote, to craftin
 Just run this mod, (it auto-generates the settings into your `minetest.conf`),
 then edit `minetest.conf` or for singleplayer worlds change it via Minetest Settings (under the Mods section will be Chest2)
 
+> If need be there is a `chest2.debug_mod` setting, enable this if you have issues and want to help debug what went wrong. (This only effects this mod)

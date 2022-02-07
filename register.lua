@@ -102,7 +102,8 @@ minetest.register_node("chest2:chest", {
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
 	light_source = 3,
-	tube = {insert_object = function(pos, node, stack, direction)
+	tube = {
+        insert_object = function(pos, node, stack, direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
             local added = stack
@@ -114,7 +115,7 @@ minetest.register_node("chest2:chest", {
             end
 			return added
 		end,
-    can_insert = function(pos, node, stack, direction)
+        can_insert = function(pos, node, stack, direction)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
             local valid = false
@@ -126,8 +127,9 @@ minetest.register_node("chest2:chest", {
             end
 			return valid
 		end,
-    --input_inventory = "main", -- Invalid, won't work since we use paging
-    connect_sides = {left = 1, right = 1, front = 1, back = 1, top = 1, bottom = 1}},
+        --input_inventory = "main", -- Invalid, won't work since we use paging
+        connect_sides = {left = 1, right = 1, front = 1, back = 1, top = 1, bottom = 1}
+    },
     after_place_node = function(pos, placer)
 		local meta=minetest.get_meta(pos)
 		local name=placer:get_player_name()
@@ -137,15 +139,11 @@ minetest.register_node("chest2:chest", {
 	end,
     on_construct = function(pos)
 		local meta=minetest.get_meta(pos)
-        meta:set_int("page", 1)
         meta:set_int("max_page", chest2.settings.pages)
-        meta:set_string("names", "")
-        meta:set_int("open", 0)
-		--meta:get_inventory():set_size("main", 60)
         local inv = meta:get_inventory()
-		for x=1, meta:get_int("max_page"), 1 do
-            inv:set_size("main"..tostring(x), 60)
-            chest2.tools.log("Inventory: main"..tostring(x).." with 60")
+        local c2 = chest2.get_chest(pos)
+        if c2.inv ~= nil then
+            inv:set_lists(c2.inv)
         end
 	end,
     allow_metadata_inventory_put = function(pos, listname, index, stack, player)
@@ -250,6 +248,8 @@ chest2.connect_remote = function (itemstack, user, pointed_thing)
                 con_meta:set_string("connection", chest2.tools.pos2str(pointed_thing.under))
                 local meta_dat = get_context(user:get_player_name())
                 meta_dat.pos = pointed_thing.under
+                meta_dat.short_description = "Remote "..minetest.pos_to_string(meta_dat.pos)
+                meta_dat.description = "Remote "..minetest.pos_to_string(meta_dat.pos).."\nUse to open\nPunch another chest to reconnect"
                 minetest.chat_send_player(user:get_player_name(), "Connected to "..minetest.pos_to_string(pointed_thing.under))
                 return connected
             end
@@ -257,6 +257,7 @@ chest2.connect_remote = function (itemstack, user, pointed_thing)
     end
 end
 
+-- The remote
 minetest.register_craftitem("chest2:remote_off", {
     short_description = "Remote (Disconnected)",
     description = "Remote (Disconnected)\nPunch a chest to connect",
@@ -271,7 +272,7 @@ chest2.use_remote = function (itemstack, user, pointed_thing)
     local meta = itemstack:get_meta()
     local pointed_chest = false
     -- Perform reconnect or attempt to access node
-    if pointed_thing ~= nil then -- Perform reconnect method
+    if pointed_thing ~= nil then -- Perform reconnect method (Assuming we can access it)
         if pointed_thing.under ~= nil then
             local node = minetest.get_node_or_nil(pointed_thing.under)
             if node.name == "chest2:chest" then
@@ -280,6 +281,8 @@ chest2.use_remote = function (itemstack, user, pointed_thing)
                 minetest.chat_send_player(user:get_player_name(), "Connected to "..minetest.pos_to_string(pointed_thing.under))
                 local meta_dat = get_context(user:get_player_name())
                 meta_dat.pos = pointed_thing.under
+                meta_dat.short_description = "Remote "..minetest.pos_to_string(meta_dat.pos)
+                meta_dat.description = "Remote "..minetest.pos_to_string(meta_dat.pos).."\nUse to open\nPunch another chest to reconnect."
                 pointed_chest = true
                 return itemstack
             end
@@ -343,7 +346,7 @@ end
 
 minetest.register_craftitem("chest2:remote_on", {
     short_description = "Remote (Connected)",
-    description = "Remote (Connected)\nPunch anywhere to open\nPunch a chest to reconnect",
+    description = "Remote (Connected)\nUse to open\nPunch a chest to reconnect",
     inventory_image = "chest2_remote_on.png",
     stack_max = 1,
     on_use = chest2.use_remote,
