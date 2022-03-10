@@ -170,6 +170,7 @@ minetest.register_node("chest2:chest", {
 		if minetest.get_meta(pos):get_string("owner")==player:get_player_name() or minetest.check_player_privs(player:get_player_name(), {protection_bypass=true}) then
 		    return stack:get_count()
 		end
+        local meta = minetest.get_meta(pos)
         if meta:get_int("open") == 1 then
             local users = chest2.tools.split(meta:get_string("names"), "\n")
             for x=1, #users, 1 do
